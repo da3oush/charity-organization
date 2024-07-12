@@ -1,0 +1,789 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="description" content="A growing collection of ready to use components for the CSS framework Bootstrap 5">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Create Donation Requests</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .error {
+            border: 1px solid red;
+            box-shadow: 0px 0px 10px 1px red;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .x-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .x-btn:hover,
+        .x-btn:focus {
+            background-color: red !important;
+            border-color: rgb(189, 70, 70) !important;
+            border-width: 1px !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .x-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        .table-container {
+            margin-top: 100px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .card-container {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            border-image-slice: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Adding shadow effect */
+            transition: border-image 0.5s, box-shadow 0.5s;
+            /* Transition for both border image and shadow */
+        }
+        
+        .card-container:hover {
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            /* Changing shadow on hover */
+        }
+        
+        .custom-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .custom-btn:hover,
+        .custom-btn:focus {
+            background-color: rgb(213, 161, 135);
+            color: rgb(22, 40, 54);
+        }
+        
+        .custom-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        .custom-form-element {
+            margin-bottom: 10px;
+            height: 30px;
+            width: 400px;
+            /* Adjust the width as needed */
+            font-size: 15px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+        /* Style the dropdown arrow */
+        
+        .dropdown-toggle::after {
+            content: "";
+            display: inline-block;
+            width: 0.3em;
+            height: 0.3em;
+            margin-left: 0.255em;
+            vertical-align: 0.255em;
+            border-top: 0.3em solid rgb(22, 40, 54);
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
+    </style>
+
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+
+    <style>
+        .center {
+            text-align: center;
+        }
+        
+        form {
+            display: inline-block;
+        }
+        
+        input[type="radio"],
+        label {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+
+    <nav id="navScroll" class="navbar navbar-expand-lg  fixed-top" tabindex="0">
+        <div class="container">
+
+            <a href="organizationDashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:150px; margin-right: 50px;" alt="">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="CreateDonationOrganization.html" aria-label="Brings you to the frontpage">
+      Create Donation Post
+    </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="fullfilledDonations.html">Fullfilled donations</a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="OrganizationCurrentDonations.html">Your Donation posts</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="organizationAccountManagment.html">
+      Account Management
+    </a>
+                    </li>
+
+                    <li class="nav-item position-relative">
+                        <a href="organizationNotification.html" aria-label="Brings you to the notifications">
+                            <img src="UnityAssets/png/notification.png" style="width: 50px; margin-left: 50px;" alt="Notifications">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: rgb(207, 118, 80);">3</span>
+                        </a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <nav class="navbar navbar-expand-lg navbar-light mt-5" style="margin-top: 150px;">
+            <div class="container" style="margin-top: 60px;">
+                <div style="margin-right: 50px; margin-top: -15px;">
+                    Choose a donation category
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="clothes">
+                                Clothes
+                            </label>
+                        </li>
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="schoolSupplies">
+                                School Supplies
+                            </label>
+                        </li>
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="toys">
+                                Toys
+                            </label>
+                        </li>
+
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="food">
+                                Food
+                            </label>
+                        </li>
+
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="medicalSupplies">
+                                Medical Supplies
+                            </label>
+                        </li>
+
+                        <li class="nav-item">
+                            <label class="nav-link">
+                                <input type="radio" class="form-check-input" name="donationType" value="bloodDonations">
+                                Blood
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" style="margin-top: 20px;">
+            <!-- Account Information Card -->
+            <div id="formWrapper" class="row justify-content-center mb-4" style="display: none;margin-left: 260px;">
+                <div class="col-md-6">
+                    <div class="card card-container" style="width: 900px;margin-left: -200px; ">
+                        <div class="card-body">
+                            <h5 class="card-title" style="margin-bottom: 20px;font-size:25px;">Create Donation Post for <span id="donationTypeText"></span></h5>
+                            <div id="formContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script>
+                function createForm(formType) {
+                    let formContent = '';
+                    switch (formType) {
+                        case 'clothes':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Type:</label>
+                <input type="text" name="type" placeholder="Shirt" class="custom-form-element form-control form-control-lg"  style="margin-left:-1px;" required>
+                <br>
+                <label>Age Group:</label>
+                <select name="ageGroup" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Age Group</option>
+                    <option value="adult">Adult</option>
+                    <option value="child">Child</option>
+                    <option value="teen">Teen</option>
+                </select>
+                <br>
+                <label>Gender:</label>
+                <select name="gender" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="unisex">Unisex</option>
+                </select>
+                <br>
+                <label>Season:</label>
+                <select name="season" class="custom-form-element form-control form-control-lg"  style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Season</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="fall">Fall</option>
+                </select>
+                <br>
+                <label>Material:</label>
+                <input type="text" name="material" placeholder="Cotton" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" min="1" required>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px; type="submit">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                        case 'toys':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Type:</label>
+                <input type="text" name="type" placeholder="Doll" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Age Group:</label>
+                <select name="ageGroup" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Age Group</option>
+                    <option value="mini">3-5</option>
+                    <option value="small">5-7</option>
+                    <option value="medium">7-10</option>
+                    <option value="large">10-12</option>
+                </select>
+                <br>
+                <label>Gender:</label>
+                <select name="gender" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="unisex">Unisex</option>
+                </select>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" min="1" required>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                        case 'food':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Name:</label>
+                <input type="text" name="type" placeholder="Bread" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" required>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" min="1" required>
+                <br>
+                <label>Measuring unit:</label>
+                <select name="unit" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select measuring unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="food">Food Items</option>
+                </select>
+                <br>
+                <label>Type:</label>
+                <select name="type" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Type of Food</option>
+                    <option value="greens">Fruit/Vegetables</option>
+                    <option value="canned">Canned</option>
+                    <option value="freshMeal">Fresh Meal</option>
+                    <option value="bakedGoods">Baked Goods</option>
+                </select>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                        case 'bloodDonations':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Blood Type:</label>
+                <select name="bloodType" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Blood Type</option>
+                    <option value="all">All</option>
+                    <option value="a+">A+</option>
+                    <option value="a-">A-</option>
+                    <option value="b+">B+</option>
+                    <option value="b-">B-</option>
+                    <option value="o-">O-</option>
+                    <option value="o+">O+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="AB+">AB+</option>
+                </select>
+                <br>
+                <label>Hospital Name:</label>
+                <select name="hospitalName" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Hospital</option>
+                    <option value="city">City Hospital</option>
+                    <option value="country">Country Hospital</option>
+                    <option value="community">Community Hospital</option>
+                </select>
+                <br>
+                <label>Area:</label>
+                <select name="area" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Area</option>
+                    <option value="downtown">Downtown</option>
+                    <option value="westside">Westside</option>
+                    <option value="northside">North Side</option>
+                </select>
+                <br>
+                <label>Governorate:</label>
+                <select name="governorate" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                    <option value="" disabled selected hidden>Select Governorate</option>
+                    <option value="nyc">Cairo</option>
+                    <option value="cali">Alexandria</option>
+                    <option value="texas">Mansoura</option>
+                </select>
+                <br>
+                <label>Address:</label>
+                <input type="text" name="address" placeholder="122 Vampire st." class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" min="1" required>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                        case 'schoolSupplies':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Type:</label>
+                <select id="mata69" name="stype" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" onchange="createFormSchools(this.value)" required>
+                    <option value="" disabled selected hidden>Select Supplies Type</option>
+                    <option value="stationary">Stationary</option>
+                    <option value="books">Books</option>
+                </select>
+                <br>
+                <div id="additionalFields"></div>
+            </form>
+        `;
+                            break;
+                        case 'medicalSupplies':
+                            formContent = `
+                            <form action="OrganizationDonationSumbited.html">
+                            <label> Type: </label>
+                            <select id="mata69" name="stype" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" onchange="createFormMedical(this.value)" required>
+                                <option value="" disabled selected hidden>Select Supplies Type</option>
+                                <option value="devices"> Devices </option>
+                                <option value="equipment"> Equipment </option>
+                                <option value="medication"> Medication </option>
+                            </select>
+                            <br>
+                            <div id="medical"></div>
+                        </form>
+        `;
+                            break;
+                    }
+
+                    document.getElementById('formContainer').innerHTML = formContent;
+                }
+
+                function createFormSchools(Type) {
+                    let formContent = '';
+                    switch (Type) {
+                        case 'stationary':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Item:</label>
+                <input type="text" name="statItem" placeholder="Pen" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" required>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity"  style="margin-left:-1px;" class="custom-form-element form-control form-control-lg" min="1" required>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" style="margin-left:-1px;" class="custom-form-element form-control form-control-lg">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                        case 'books':
+                            formContent = `
+            <form action="OrganizationDonationSumbited.html">
+                <label>Title:</label>
+                <input type="text" name="title" placeholder="se7en" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Author:</label>
+                <input type="text" name="author" placeholder="John Doe" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Language:</label>
+                <input type="text" name="lang" placeholder="English" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Edition:</label>
+                <input type="text" name="edition" placeholder="1st" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Summary:</label>
+                <input type="text" name="summary" placeholder="7 mysterious murders need to be solved" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                <br>
+                <label>Quantity:</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" min="1" required>
+                <br>
+                <label>Details:</label>
+                <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+            </form>
+            
+        `;
+                            break;
+                    }
+                    document.getElementById('additionalFields').innerHTML = formContent;
+                }
+
+                function createFormMedical(Type) {
+                    let formContent = '';
+                    switch (Type) {
+                        case 'medication':
+                            formContent = `
+                    <form action="OrganizationDonationSumbited.html">
+                        <label> Name: </label>
+                        <input type="text" name="medname" placeholder="paracetamol" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                        <label style="margin-top:10px;"> Use: </label>
+                        <select class="custom-form-element form-control form-control-lg" style="margin-left:-1px" name="use" required>
+                                <option value="" disabled selected hidden>Select medication use</option>
+                                <option value="antibiotic"> Antibiotic </option>
+                                <option value="painkiller"> Pain relief </option>
+                            </select>
+                            <br>
+                            <label>Quantity:</label>
+                            <input type="number" name="quantity" placeholder="Enter quantity" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" min="1" required>
+                            <br>
+                            <label> Details: </label>
+                            <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                            <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+                    </form> 
+                    
+            </a>
+                    `;
+                            break;
+                        case 'devices':
+                            formContent = `
+                        <form action="OrganizationDonationSumbited.html">
+                            <label> Name: </label>
+                            <input type="text" name="dname" placeholder="heart rate monitor" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                            <br>
+                            <label> Use: </label>
+                            <input type="text" name="duse" placeholder="monitor heart rate" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                            <br>
+                            <label>Quantity:</label>
+                            <input type="number" name="quantity" placeholder="Enter quantity" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" min="1" required>
+                            <br>
+                            <label> Details: </label>
+                            <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                            <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+                        </form>
+                        
+                    `;
+                            break;
+                        case 'equipment':
+                            formContent = `
+                        <form action="OrganizationDonationSumbited.html">
+                            <label> Name: </label>
+                            <input type="text" name="ename" placeholder="insulin pen" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                            <br>
+                            <label> Use: </label>
+                            <input type="text" name="duse" placeholder="for diabetes" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" required>
+                            <br>
+                            <label>Quantity:</label>
+                            <input type="number" name="quantity" placeholder="Enter quantity" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;" min="1" required>
+                            <br>
+                            <label> Details: </label>
+                            <input type="text" name="details" placeholder="optional" class="custom-form-element form-control form-control-lg" style="margin-left:-1px;">
+                            <a href="OrganizationDonationSumbited.html">
+                <div style="margin-top:5px;">
+                <button class="custom-btn" style="margin-left: 750px; margin-bottom: 5px; width: 110px; height: 45px; font-size: 17px;">Submit</button>
+                </div>
+            </a>
+                        </form>
+                        
+                    `;
+                            break;
+                    }
+                    document.getElementById('medical').innerHTML = formContent;
+
+                }
+
+
+
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    const formWrapper = document.getElementById('formWrapper');
+                    const radioButtons = document.getElementsByName('donationType');
+                    const donationTypeText = document.getElementById('donationTypeText');
+
+                    radioButtons.forEach(button => {
+                        button.addEventListener('change', function() {
+                            // Show the form wrapper if a checkbox is selected
+                            formWrapper.style.display = this.checked ? 'block' : 'none';
+
+                            // Update the card title text based on the selected option
+                            donationTypeText.textContent = this.checked ? this.parentElement.textContent.trim() : '';
+
+                            // Generate form content only if the checkbox is selected
+                            createForm(this.value);
+                            if (this.value === 'schoolSupplies') {
+                                // Check if the dropdown exists before adding the event listener
+                                const schoolTypeDropdown = document.querySelector('select[id="mata69"]');
+                                if (schoolTypeDropdown) {
+                                    schoolTypeDropdown.addEventListener('change', function() {
+                                        console.log("Dropdown value changed:", this.value);
+                                        createFormSchools(this.value);
+                                    });
+                                } else {
+                                    console.error("Dropdown element not found");
+                                }
+                            }
+                            if (this.value === 'medicalSupplies') {
+                                const medicalTypeDropdown = document.querySelector('select[name="mtype"]');
+                                if (medicalTypeDropdown) {
+                                    medicalTypeDropdown.addEventListener('change', function() {
+                                        console.log("Dropdown value changed:", this.value);
+                                        createFormMedical(this.value);
+                                    });
+                                } else {
+                                    console.error("Dropdown element not found");
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+
+    </main>
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:200px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Organization Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a> -->
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="Registration.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+    <script>
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+</body>
+
+</html>

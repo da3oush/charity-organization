@@ -1,0 +1,538 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="description" content="A growing collection of ready to use components for the CSS framework Bootstrap 5">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .x-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .x-btn:hover,
+        .x-btn:focus {
+            background-color: red !important;
+            border-color: rgb(189, 70, 70) !important;
+            border-width: 1px !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .x-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        .table-container {
+            margin-top: 100px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .card-container {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            border-image-slice: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Adding shadow effect */
+            transition: border-image 0.5s, box-shadow 0.5s;
+            /* Transition for both border image and shadow */
+        }
+        
+        .card-container:hover {
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            /* Changing shadow on hover */
+        }
+        
+        .custom-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .custom-btn:hover,
+        .custom-btn:focus {
+            background-color: rgb(213, 161, 135);
+            color: rgb(22, 40, 54);
+        }
+        
+        .custom-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+            small {
+                font-size: 0.5em;
+            }
+        }
+        
+        .responsive-table {
+            li {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #162836;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                color: white;
+            }
+            .table-row-even {
+                background-color: white;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .table-row-odd {
+                background-color: #D5A187;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .col-1 {
+                flex-basis: 10%;
+            }
+            .col-2 {
+                flex-basis: 40%;
+            }
+            .col-3 {
+                flex-basis: 20%;
+            }
+            .col-4 {
+                flex-basis: 20%;
+            }
+            .col-5 {
+                flex-basis: 20%;
+            }
+            @media all and (max-width: 767px) {
+                .table-header {
+                    display: none;
+                }
+                .table-row {}
+                li {
+                    display: block;
+                }
+                .col {
+                    flex-basis: 100%;
+                }
+                .col {
+                    display: flex;
+                    padding: 10px 0;
+                    &:before {
+                        color: #6C7A89;
+                        padding-right: 10px;
+                        content: attr(data-label);
+                        flex-basis: 50%;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    </style>
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .badge {
+            font-size: 0.8rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            text-align: center;
+            padding: 0;
+            border: none;
+            pointer-events: none;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+
+    <nav id="navScroll" class="navbar navbar-expand-lg  fixed-top" tabindex="0" style="margin-bottom: 70px;">
+        <div class="container">
+
+            <a href="medicaldashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:150px; margin-right: 50px;" alt="">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="medicalViewDonations.html" aria-label="Brings you to the frontpage">
+      View Donation Requests 
+    </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy dropdown-toggle" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Volunteer</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="link link-fancy dropdown-item" href="medicalVolunteer.html">Medical</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px; margin-bottom: 15px;" role="button" href="medicalRegisteredOrganizations.html">
+                            Organizations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="medicalAccountSettings.html">
+                    Account Settings
+                        </a>
+
+
+                    </li>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div style="font-size: 26px; text-align: center; margin-top: 170px; margin-bottom: -120px; font-weight: bold; color: #162836;">Account Details</div>
+        <div class="container" style="margin-top: 20px;">
+            <!-- Account Information Card -->
+            <div class="row justify-content-center mb-4 ">
+                <div class="col-md-6 ">
+                    <div class="card card-container" style="width: 900px;margin-left: -200px;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="margin-bottom: 20px;">Account Information</h5>
+                            <p class="card-text" id="accountNameDisplay">Account Name: Youssef Faizallah</p>
+                            <p class="card-text mt-3" id="accountEmailDisplay">Account Email: fizo@example.com</p>
+                            <p class="card-text mt-3">Account Type: Donor</p>
+                            <p class="card-text mt-3">Password: <input type="password" id="accountPasswordDisplay" style="border-radius:5px; background-color: white; width: 140px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-left: 5px;" value="Organization" disabled></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit Account Details Card -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card card-container" style="width: 900px;margin-left: -200px; margin-bottom: 30px;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="margin-bottom: 20px;">Edit Account Details</h5>
+                            <form id="editAccountForm">
+                                <div class="mb-3">
+                                    <label for="newAccountName" class="form-label" style="margin-bottom: 10px;">Account Name</label>
+                                    <input type="text" class="form-control" id="newAccountName" style="border-radius: 10px;" placeholder="Enter new name">
+                                    <div id="nameError" style="color: red;"></div>
+                                </div>
+                                <button class="btn custom-btn" type="submit" class="btn btn-primary">Save Name</button>
+                            </form>
+                            <form id="editEmailForm">
+                                <div class="mb-3">
+                                    <label for="newAccountEmail" class="form-label" style="margin-top: 20px; margin-bottom: 10px;">Account Email</label>
+                                    <input type="email" class="form-control" id="newAccountEmail" style="border-radius: 10px;" placeholder="Enter new email">
+                                    <div id="emailError" style="color: red;"></div>
+                                </div>
+                                <button class="btn custom-btn" type="submit" class="btn btn-primary">Save Email</button>
+                            </form>
+
+                            <form id="editPasswordForm">
+                                <div class="mb-3">
+                                    <label for="newAccountPassword" class="form-label" style="margin-bottom: 10px; margin-top: 10px;">Password</label>
+                                    <input type="password" class="form-control" id="newAccountPassword" style="border-radius: 10px;" placeholder="Enter new password">
+                                    <div id="passwordError" style="color: red;"></div>
+                                </div>
+                                <button class="btn custom-btn" type="submit" class="btn btn-primary">Save Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-4 ">
+            <div class="col-md-6">
+                <div class="card card-container" style="width: 900px;margin-left: -93px; ">
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-bottom: 20px;">Delete Account</h5>
+                        <p class="card-text">Note that: You won't be able to use the website facilities when you delete the account. To continue press the Delete button below.</p>
+                        <form>
+                            <button class="x-btn" id="deleteAcc" type="submit" style="border-radius: 10px; border-color: black;">Delete Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-4 ">
+            <div class="col-md-6">
+                <div class="card card-container" style="width: 900px;margin-left: -93px; ">
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-bottom: 20px;">Log Out</h5>
+                        <p class="card-text">You will be redirected to the home page when you log out from the account. To continue press the Log out button below.</p>
+                        <form>
+                            <button class="x-btn" id="Logout" type="submit" style="border-radius: 10px; border-color: black;">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:200px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Donor Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a> -->
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="Registration.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+        });
+    </script>
+
+    <script>
+        document.getElementById('editAccountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var newName = document.getElementById('newAccountName').value;
+            const newNameField = document.getElementById("newAccountName"); // Get the new name field
+            const nameError = document.getElementById("nameError"); // Get the error message element
+
+            // Check if the new name field is empty
+            if (newName.trim() === '') {
+                newNameField.classList.add('error'); // Add error class to the input field
+                nameError.textContent = 'Please enter a new name'; // Set error message
+                return; // Stop further execution
+            }
+
+            document.getElementById('accountNameDisplay').innerText = "Account Name: " + newName;
+            newNameField.classList.remove('error'); // Remove error class from the input field
+            nameError.textContent = ''; // Clear error message
+        });
+
+        document.getElementById('editEmailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var newEmail = document.getElementById('newAccountEmail').value;
+            const newEmailField = document.getElementById("newAccountEmail"); // Get the new email field
+            const emailError = document.getElementById("emailError"); // Get the error message element
+            // Regular expression to validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Check if the new email field is empty
+            if (newEmail.trim() === '') {
+                newEmailField.classList.add('error'); // Add error class to the input field
+                emailError.textContent = 'Please enter a new email'; // Set error message
+                return; // Stop further execution
+            }
+
+            // Check if the new email is valid
+            if (!emailRegex.test(newEmail)) {
+                newEmailField.classList.add('error'); // Add error class to the input field
+                emailError.textContent = 'Please enter a valid email'; // Set error message
+                return; // Stop further execution
+            }
+
+            document.getElementById('accountEmailDisplay').innerText = "Account Email: " + newEmail;
+            newEmailField.classList.remove('error'); // Remove error class from the input field
+            emailError.textContent = ''; // Clear error message
+        });
+
+        document.getElementById('editPasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var newPassword = document.getElementById('newAccountPassword').value;
+            const newPasswordField = document.getElementById("newAccountPassword"); // Get the new password field
+            const passwordError = document.getElementById("passwordError"); // Get the error message element
+            // Regular expression to check if password contains at least 7 characters and at least one capital letter
+            const passwordRegex = /^(?=.*[A-Z]).{7,}$/;
+
+            // Check if the new password field is empty
+            if (newPassword.trim() === '') {
+                newPasswordField.classList.add('error'); // Add error class to the input field
+                passwordError.textContent = 'Please enter a new password'; // Set error message
+                return; // Stop further execution
+            }
+
+            // Check if the new password meets the constraints
+            if (!passwordRegex.test(newPassword)) {
+                newPasswordField.classList.add('error'); // Add error class to the input field
+                passwordError.textContent = 'Password should contain at least 7 characters and at least one capital letter'; // Set error message
+                return; // Stop further execution
+            }
+
+            // Simulate password change
+            document.getElementById('accountPasswordDisplay').value = newPassword;
+            alert("New password saved successfully");
+            newPasswordField.classList.remove('error'); // Remove error class from the input field
+            passwordError.textContent = ''; // Clear error message
+        });
+
+        document.getElementById("newAccountName").addEventListener("input", function() {
+            const newNameField = document.getElementById("newAccountName"); // Get the new name field
+            newNameField.classList.remove('error'); // Remove error class from the input field
+            document.getElementById("nameError").textContent = ''; // Clear error message
+        });
+
+        document.getElementById("newAccountEmail").addEventListener("input", function() {
+            const newEmailField = document.getElementById("newAccountEmail"); // Get the new email field
+            newEmailField.classList.remove('error'); // Remove error class from the input field
+            document.getElementById("emailError").textContent = ''; // Clear error message
+        });
+
+        document.getElementById("newAccountPassword").addEventListener("input", function() {
+            const newPasswordField = document.getElementById("newAccountPassword"); // Get the new password field
+            newPasswordField.classList.remove('error'); // Remove error class from the input field
+            document.getElementById("passwordError").textContent = ''; // Clear error message
+        });
+    </script>
+
+    <script>
+        deleteAcc.addEventListener('click', function(event) {
+            event.preventDefault();
+            alert("Your account has been successfully deleted");
+            window.location.href = 'index.html';
+
+        });
+
+        Logout.addEventListener('click', function(event) {
+            event.preventDefault();
+            alert("Your have logged out from your account");
+            window.location.href = 'index.html';
+
+        });
+
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+</body>
+
+</html>

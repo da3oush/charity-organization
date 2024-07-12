@@ -1,0 +1,193 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Administrator Login</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .error {
+            border: 1px solid red;
+            box-shadow: 0px 0px 10px 1px red;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+<body class="d-flex h-100 w-100" data-bs-spy="scroll" data-bs-target="#navScroll">
+
+    <div class="h-100 container-fluid">
+        <div class="h-100 row d-flex align-items-stretch">
+
+            <div class="col-12 col-md-7 col-lg-6 d-flex align-items-start flex-column px-vw-5">
+
+                <header class="mb-auto py-vh-2 col-12">
+                    <a class="navbar-brand pe-4 fs-4" href="/">
+                        <img src="UnityAssets/png/logo-no-background.png" style="width:350px; margin-top: 100px;" alt>
+                    </a>
+
+                </header>
+                <main class="mb-auto col-12">
+                    <h1>Administrator Login</h1>
+
+                    <form class="row" id="loginForm">
+                        <div class="col-12 col-lg-10 col-xl-8">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email
+                    address</label>
+                                <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password">
+                                <div class="error-message" id="passwordError"></div>
+                            </div>
+                            <div class="mb-3 form-check py-3">
+
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #162836; color: #D5A187;">Login</button>
+                        </div>
+                    </form>
+
+                </main>
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-6 bg-cover" style="background-image: url(UnityAssets/18-meaningful-ways-to-help-others-and-give-back-to-your-community-hero.jpg);"></div>
+
+        </div>
+
+    </div>
+    <script>
+        // Define user data as an array of objects
+        const admin = [{
+            "email": "admin1@gmail.com",
+            "password": "password1"
+        }, {
+            "email": "admin2@gmail.com",
+            "password": "password2"
+        }];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const email = document.getElementById('exampleInputEmail1');
+            const password = document.getElementById('exampleInputPassword1');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const userEmail = email.value;
+                const userPassword = password.value;
+
+                const foundUser = admin.find(admin => admin.email === userEmail && admin.password === userPassword);
+                console.log(foundUser);
+                if (foundUser) {
+                    const adminName = foundUser.email.replace('@gmail.com', '');
+                    localStorage.setItem('adminName', adminName);
+                    // alert(foundUser);
+                    window.location.href = 'adminDashboard.html'
+                } else {
+                    // alert(foundUser);
+
+
+                    emailError.textContent = '';
+                    email.classList.remove('error');
+                    passwordError.textContent = '';
+                    password.classList.remove('error');
+
+                    if (email.value.trim() === "") {
+                        email.classList.add('error');
+                        email.focus();
+                        emailError.textContent = 'Please enter your email';
+                        return false;
+                    }
+
+                    if (password.value.trim() === "") {
+                        password.classList.add('error');
+                        password.focus();
+                        passwordError.textContent = 'Please enter your password';
+                        return false;
+                    }
+                    //  window.location.href = '404NotFound.html';
+                }
+
+
+            });
+
+
+
+
+            email.addEventListener('input', function() {
+                if (email.value.trim() !== "") {
+                    email.classList.remove('error');
+                    emailError.textContent = '';
+                } else {
+                    emailError.textContent = '';
+                }
+            });
+
+            password.addEventListener('input', function() {
+                if (password.value.trim() !== "") {
+                    password.classList.remove('error');
+                    passwordError.textContent = '';
+                } else {
+                    passwordError.textContent = '';
+                }
+            });
+
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="description" content="A growing collection of ready to use components for the CSS framework Bootstrap 5">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>View Organizations</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .table-container {
+            margin-top: 100px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+            small {
+                font-size: 0.5em;
+            }
+        }
+        
+        .responsive-table {
+            li {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #162836;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                color: white;
+            }
+            .table-row-even {
+                background-color: white;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .table-row-odd {
+                background-color: #D5A187;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .col-1 {
+                flex-basis: 10%;
+            }
+            .col-2 {
+                flex-basis: 40%;
+            }
+            .col-3 {
+                flex-basis: 20%;
+            }
+            .col-4 {
+                flex-basis: 20%;
+            }
+            .col-5 {
+                flex-basis: 20%;
+            }
+            @media all and (max-width: 767px) {
+                .table-header {
+                    display: none;
+                }
+                .table-row {}
+                li {
+                    display: block;
+                }
+                .col {
+                    flex-basis: 100%;
+                }
+                .col {
+                    display: flex;
+                    padding: 10px 0;
+                    &:before {
+                        color: #6C7A89;
+                        padding-right: 10px;
+                        content: attr(data-label);
+                        flex-basis: 50%;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    </style>
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+
+    <nav id="navScroll" class="navbar navbar-expand-lg  fixed-top" tabindex="0">
+        <div class="container">
+            <a class="navbar-brand" href="adminDashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:150px; margin-right: 50px;" alt="" href="adminDashboard.html">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="ViewOrganizations.html" aria-label="Brings you to the frontpage">
+      View Organization 
+    </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="ViewDonors.html" aria-label="Brings you to the frontpage">
+    View Donor 
+  </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy dropdown-toggle" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Review Submissions</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="link link-fancy dropdown-item" href="reviewOrganization.html">Organization</a></li>
+                            <li><a class="link link-fancy dropdown-item" href="reviewDonor.html">Donor</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy dropdown-toggle" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Requests</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="link link-fancy dropdown-item" href="ViewOrganizationSubmission.html">Organization</a></li>
+                            <li><a class="link link-fancy dropdown-item" href="ViewDonorSubmission.html">Donor</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="Accountmanagment.html">
+      Account Management
+    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="RegisteredOrganizations.html">
+      Registered Organizations
+    </a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="Accountsettings.html">
+Account Settings
+</a>
+                    </li>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="py-vh-5 w-100 overflow-hidden" id="services">
+            <div class="table-container">
+                <ul class="responsive-table" id="organizationTable">
+                    <li class="table-header">
+                        <div class="col col-1">ID</div>
+                        <div class="col col-2">Organization Name</div>
+                        <div class="col col-3">Donations</div>
+                        <div class="col col-4">Activity Status</div>
+                        <div class="col col-5">Contact</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:150px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="adminLogin.html">Administrator Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Administrator Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="register.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="content.html">Simple Text Content Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+
+    <script>
+        // Sample JSON data
+
+        if (document.referrer != "") {
+            console.log(document.referrer);
+            organizations = JSON.parse(localStorage.getItem('organizations'));
+        } else {
+            let organizations = [{
+                id: 42235,
+                name: 'Helping Hands',
+                donations: 350,
+                status: 'Pending',
+                contact: 'Pending'
+            }, {
+                id: 42442,
+                name: 'Goodwill',
+                donations: 220,
+                status: 'Pending',
+                contact: 'Pending'
+            }, ];
+
+            //localStorage.setItem('organizations', JSON.stringify(organizations));
+
+        }
+
+        // Function to create table rows from JSON data
+        function createTableRows(data) {
+            const table = document.getElementById('organizationTable');
+            data.forEach((organization, index) => {
+                const rowClass = index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
+                const newRow = document.createElement('li');
+                newRow.classList.add(rowClass);
+                newRow.innerHTML = `
+              <div class="col col-1" data-label="organization ID">${organization.id}</div>
+              <div class="col col-2" data-label="organization Name">${organization.name}</div>
+              <div class="col col-3" data-label="No. of Donations">${organization.donations}</div>
+              <div class="col col-4" data-label="Activity Status">${organization.status}</div>
+              <div class="col col-5" data-label="Contact">${organization.contact}</div>
+            `;
+                table.appendChild(newRow);
+            });
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            createTableRows(organizations);
+
+        });
+    </script>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+        });
+    </script>
+
+    <script>
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+</body>
+
+</html>

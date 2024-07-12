@@ -1,0 +1,739 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="description" content="A growing collection of ready to use components for the CSS framework Bootstrap 5">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Fullfilled Donations</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .x-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .x-btn:hover,
+        .x-btn:focus {
+            background-color: red !important;
+            border-color: rgb(189, 70, 70) !important;
+            border-width: 1px !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .custom-btn {
+            border-radius: 10px;
+            color: rgb(213, 161, 135);
+            background-color: rgb(22, 40, 54);
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .custom-btn:hover,
+        .custom-btn:focus {
+            background-color: rgb(213, 161, 135);
+            color: rgb(22, 40, 54);
+        }
+        
+        .custom-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        .x-btn:hover::before {
+            background-color: rgb(213, 161, 135);
+        }
+        
+        .table-container {
+            margin-top: 100px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .card-container {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            border-image-slice: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Adding shadow effect */
+            transition: border-image 0.5s, box-shadow 0.5s;
+            /* Transition for both border image and shadow */
+        }
+        
+        .card-container:hover {
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            /* Changing shadow on hover */
+        }
+        
+        h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+            small {
+                font-size: 0.5em;
+            }
+        }
+        
+        .responsive-table {
+            li {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #162836;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                color: white;
+            }
+            .table-row-even {
+                background-color: white;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .table-row-odd {
+                background-color: #D5A187;
+                box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+            }
+            .col-1 {
+                flex-basis: 10%;
+            }
+            .col-2 {
+                flex-basis: 40%;
+            }
+            .col-3 {
+                flex-basis: 20%;
+            }
+            .col-4 {
+                flex-basis: 20%;
+            }
+            .col-5 {
+                flex-basis: 20%;
+            }
+            @media all and (max-width: 767px) {
+                .table-header {
+                    display: none;
+                }
+                .table-row {}
+                li {
+                    display: block;
+                }
+                .col {
+                    flex-basis: 100%;
+                }
+                .col {
+                    display: flex;
+                    padding: 10px 0;
+                    &:before {
+                        color: #6C7A89;
+                        padding-right: 10px;
+                        content: attr(data-label);
+                        flex-basis: 50%;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    </style>
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .badge {
+            font-size: 0.8rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            text-align: center;
+            padding: 0;
+            border: none;
+            pointer-events: none;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+
+    <nav id="navScroll" class="navbar navbar-expand-lg  fixed-top" tabindex="0">
+        <div class="container">
+
+            <a href="organizationDashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:150px; margin-right: 50px;" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="CreateDonationOrganization.html" aria-label="Brings you to the frontpage">
+      Create Donation Post
+    </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px; " href="fullfilledDonations.html" aria-label="Brings you to the frontpage">
+Fullfilled Donations 
+</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="OrganizationCurrentDonations.html">Your Donation Posts</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px;" href="organizationAccountManagment.html">
+      Account Management
+    </a>
+                    </li>
+
+                    <li class="nav-item position-relative">
+                        <a href="organizationNotification.html" aria-label="Brings you to the notifications">
+                            <img src="UnityAssets/png/notification.png" style="width: 50px; margin-left: 50px;" alt="Notifications">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="background-color: rgb(207, 118, 80);">3</span>
+                        </a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div style="font-size: 26px; text-align: center; margin-top: 170px; margin-bottom: -120px; font-weight: bold; color: #162836;">Fullfilled Posts</div>
+        <div class="py-vh-5 w-100 overflow-hidden" id="services">
+            <div class="container" style="margin-top: 75px;">
+                <div class="row" id="cardContainer">
+                </div>
+            </div>
+    </main>
+
+
+
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:200px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Organization Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a> -->
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="Registration.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+        });
+    </script>
+
+    <script>
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+    <script>
+        let clothes = [{
+            "Donor Name": "Peter Adel",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "1",
+            "Donation Category": "Clothes",
+            "Donated Item": "Shirt",
+            "Area": "Maadi",
+            "Governorate": "Cairo",
+            "Address": "234 St 9",
+            "Fullfilled": "YES", // Add Category property
+        }, {
+            "Donor Name": "Abdullah Hesham",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "2",
+            "Donation Category": "School Supplies",
+            "Donated Item": "Mathematics Book",
+            "Area": "New Cairo",
+            "Governorate": "Cairo",
+            "Address": "South 90 Avenue",
+            "Fullfilled": "NO", // Add Category property
+        }, {
+            "Donor Name": "Ahmed Samy",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "3",
+            "Donation Category": "Toys",
+            "Donated Item": "Remote Control Car",
+            "Area": "New Cairo",
+            "Governorate": "Cairo",
+            "Address": "North 90 Avenue",
+            "Fullfilled": "NO", // Add Category property
+        }, {
+            "Donor Name": "Youssef Faizallah",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "4",
+            "Donation Category": "Food",
+            "Donated Item": "Bread",
+            "Area": "Nasr City",
+            "Governorate": "Cairo",
+            "Address": "45 Tayaran St",
+            "Fullfilled": "YES", // Add Category property
+        }, {
+            "Donor Name": "Youssef Raafat",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "5",
+            "Donation Category": "Medical Supplies",
+            "Donated Item": "Panadol",
+            "Area": "Semouha",
+            "Governorate": "Alexandria",
+            "Address": "456 Kournish St",
+            "Fullfilled": "NO", // Add Category property
+        }, {
+            "Donor Name": "Seif Mohamed",
+            "Donor Contact Number": "+01110492407",
+            "Donor ID": "5",
+            "Donation Category": "Blood Donations",
+            "Donated Item": "O+ Blood Bag",
+            "Area": "6 October City",
+            "Governorate": "Giza",
+            "Address": "456 Gamal Abdelnasser St",
+            "Fullfilled": "NO", // Add Category property
+        }];
+
+
+        // let schoolSupplies = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES", // Add Category property
+        // }];
+
+        // let Books = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        // let stationeryItems = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        // let toys = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        // let food = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        // let medicalSupplies = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        // let bloodDonations = [{
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }, {
+        //     "Donor Name": "Emily Johnson",
+        //     "Donor Contact Number": "+01110492407",
+        //     "Donor ID": "1",
+        //     "Area": "Westside",
+        //     "Governorate": "California",
+        //     "Address": "456 Oak Avenue",
+        //     "Fullfilled": "YES",
+        // }];
+
+        function generateCards(array) {
+            let cardHtml = '';
+            array.forEach(item => {
+                        let photoHtml = '';
+                        let maxQuantity = item.quantity; // Set the maximum quantity to the quantity of the item
+
+                        cardHtml += `
+            <div class="row card-container" style="margin-bottom:20px; margin-left:25px">
+                <div class="card mb-3" style="border: none;">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body" >
+                                ${Object.entries(item).map(([key, value]) => `
+                                    <p class="card-text"><strong>${key}:</strong> ${value}</p>
+                                `).join('')}
+                                <div class="input-group">
+                                    <button data-item-id="${item['Donor ID']}" class="x-btn delete-button" style="border-radius: 10px; border-color: black;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="position: absolute; z-index: 1; margin-left: 730px;">
+                            ${photoHtml}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    return cardHtml;
+}
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-button')) {
+        const itemId = event.target.dataset.itemId;
+        deleteItem(itemId);
+    }
+});
+
+function deleteItem(itemId) {
+    // Find the index of the item with the given ID
+    let index = clothes.findIndex(item => item['Donor ID'] === itemId);
+    
+    // If the item is found and is fulfilled, remove it
+    if (index !== -1 && clothes[index].Fullfilled === "YES") {
+        clothes.splice(index, 1); // Remove the item from the array
+        // Regenerate the cards
+        document.getElementById('cardContainer').innerHTML = generateCards(clothes);
+    } else {
+        // Display a message if the item is not found or not fulfilled
+        alert("Can't delete unfulfilled request or item not found.");
+    }
+}
+
+function filterCards(category) {
+    const cardContainer = document.getElementById('cardContainer');
+    cardContainer.innerHTML = '';
+    clothes.forEach(item => {
+        if (item.Fullfilled === category || category === 'all') {
+            cardContainer.innerHTML += generateCards([item]);
+        }
+    });
+}
+
+// JSON arrays
+
+// Container for cards
+const cardContainer = document.getElementById('cardContainer');
+
+// Generate cards for the clothes array
+cardContainer.innerHTML = generateCards(clothes);
+
+// Radio button change event listener
+const radioButtons = document.querySelectorAll('input[name="category"]');
+radioButtons.forEach(button => {
+    button.addEventListener('change', (event) => {
+        const category = event.target.value;
+        filterCards(category);
+    });
+});
+    </script>
+
+
+
+
+</body>
+
+</html>

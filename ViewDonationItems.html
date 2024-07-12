@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/logo-no-background.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+    <meta name="Author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>view Donations</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .card-container {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            border-image-slice: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Adding shadow effect */
+            transition: border-image 0.5s, box-shadow 0.5s;
+            /* Transition for both border image and shadow */
+        }
+        
+        .card-container:hover {
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            /* Changing shadow on hover */
+        }
+        
+        .xxx:hover {
+            border-image: linear-gradient(to right, #ffffff 50%, #FFFFFF 50%);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+            /* Changing shadow on hover */
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .filter-container>div {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .options-container {
+            float: right;
+        }
+    </style>
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+    <nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
+        <div class="container">
+            <a class="navbar-brand pe-4 fs-4" href="donorDashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:140px;  " alt>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right:10px;" href="ViewDonationItems.html" aria-label="Brings you to the frontpage">
+                            View Donation Requests
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy dropdown-toggle" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Volunteer</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="link link-fancy dropdown-item" href="applyMedical.html">Medical</a></li>
+                            <li><a class="link link-fancy dropdown-item" href="applyTeaching.html">Teaching</a></li>
+                        </ul>
+                    </li>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px; margin-bottom: 15px;" role="button" href="RegisteredOrganizationsdoner.html">
+                    Organizations
+                </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right:10px;" href="donorAccountSettings.html">
+                            Account Settings
+                        </a>
+                    </li>
+
+                    <div class="d-flex ms-auto">
+
+                        <form class="d-flex">
+                            <input class="form-control form-control-sm xxx" style="margin-right: 15px; width: 200px;height:40px;" id="searchBar" type="search" placeholder="Search.." aria-label="Search">
+                            <a id="searchButton" class="btn xxx " style="margin:0px 15px 0px 0px; width:80px;height: 38px;" href="#">Search</a>
+                        </form>
+                </ul>
+                </div>
+            </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light mt-5" style="margin-top: 150px;">
+        <div class="container" style="margin-top: 60px;">
+            <div style="margin-right: 50px;">
+                Choose a category
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" id="all" value="all" checked>
+                            All
+                        </label>
+                    </li>
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="clothes">
+                            Clothes
+                        </label>
+                    </li>
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="schoolSupplies">
+                            School Supplies
+                        </label>
+                    </li>
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="toys">
+                            Toys
+                        </label>
+                    </li>
+
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="food">
+                            Food
+                        </label>
+                    </li>
+
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="medicalSupplies">
+                            Medical Supplies
+                        </label>
+                    </li>
+
+                    <li class="nav-item">
+                        <label class="nav-link">
+                            <input type="radio" class="form-check-input" name="category" value="bloodDonations">
+                            Blood Donations
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="clothesFilterContainer" class="filter-container" style="display: none; margin-left: 212px;">
+        <div>
+            <label for="clothesAge">Age:</label>
+            <select id="clothesAge" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="Adult">Adult</option>
+            <option value="Child">Child</option>
+            <option value="Teen">Teen</option>
+        </select>
+        </div>
+        <div>
+            <label for="clothesGender">Gender:</label>
+            <select id="clothesGender" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Unisex">Unisex</option>
+        </select>
+        </div>
+        <div>
+            <label for="clothesSeason">Season:</label>
+            <select id="clothesSeason" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="Summer">Summer</option>
+            <option value="Spring">Spring</option>
+            <option value="Fall">Fall</option>
+            <option value="Winter">Winter</option>
+        </select>
+        </div>
+    </div>
+
+
+
+    <div id="schoolSuppliesFilterContainer" class="filter-container" style="display: none;">
+        <div>
+            <label for="schoolSuppliesType" style="margin-left: 212px;">Type:</label>
+            <select id="schoolSuppliesType" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Books">Books</option>
+                <option value="Stationary">Stationary</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="toysFilterContainer" class="filter-container" style="display: none;">
+        <div>
+            <label for="toysAge" style="margin-left: 212px;">Age:</label>
+            <select id="toysAge" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="5-7">5-7</option>
+                <option value="3-5">3-5</option>
+                <option value="6-10">6-10</option>
+                <option value="8-12">8-12</option>
+            </select>
+        </div>
+        <div>
+            <label for="toysGender">Gender:</label>
+            <select id="toysGender" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Unisex">Unisex</option>
+            </select>
+        </div>
+        <div>
+            <label for="toysCategory">Category:</label>
+            <select id="toysCategory" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Action Figure">Action Figure</option>
+                <option value="Doll">Doll</option>
+                <option value="Cars">Cars</option>
+                <option value="Board Game">Board Game</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="foodFilterContainer" class="filter-container" style="display: none;">
+        <div>
+            <label for="foodType" style="margin-left: 212px;">Type:</label>
+            <select id="foodType" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="fruit/veg">Fruit/Vegetable</option>
+                <option value="canned">Canned</option>
+                <option value="fresh meal">Fresh Meal</option>
+                <option value="baked">Baked Goods</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="medicalSuppliesFilterContainer" class="filter-container" style="display: none;">
+        <div>
+            <label for="medicalSuppliesDeviceType" style="margin-left: 212px;">Medical Supplies Type:</label>
+            <select id="medicalSuppliesDeviceType" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Devices">Devices</option>
+                <option value="Equipment">Equipment</option>
+                <option value="Medication">Medication</option>
+            </select>
+        </div>
+        <div id="medicationFilterContainer">
+            <div>
+                <label for="medicationUse">Medication Use: </label>
+                <select id="medicationUse" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Pain relief">Pain Relief</option>
+                <option value="Antibiotic">Antibiotic</option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <div id="bloodDonationFilterContainer" class="filter-container" style="display: none;">
+        <div>
+            <label for="bloodDonationHospital" style="margin-left: 212px;">Hospital:</label>
+            <select id="bloodDonationHospital" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Magdy Yacoub Heart Hospital">Magdy Yacoub Heart Hospital</option>
+                <option value="Bahya Hospital">Bahya Hospital</option>
+                <option value="El Salam Hospital">El Salam Hospital</option>
+            </select>
+        </div>
+        <div>
+            <label for="bloodDonationGovernorate">Governorate:</label>
+            <select id="bloodDonationGovernorate" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="Giza">Giza</option>
+                <option value="Cairo">Cairo</option>
+                <option value="Aswan">Aswan</option>
+            </select>
+        </div>
+        <div>
+            <label for="bloodDonationArea">Area:</label>
+            <select id="bloodDonationArea" class="form-select form-select-lg" style="min-height: 10px; height: 30px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+                <option value="all">All</option>
+                <option value="El Haram">El Haram</option>
+                <option value="El Marg">El Marg</option>
+                <option value="Isis Temple">Isis Temple</option>
+            </select>
+        </div>
+    </div>
+
+    <main>
+        <div class="container" style="margin-top: 75px;">
+            <div class="row" id="cardContainer">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:200px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Donor Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a> -->
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="Registration.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+        });
+    </script>
+
+    <script>
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+    <script>
+        let clothes = [{
+            "Type": "T-shirt",
+            "Age": "Adult",
+            "Gender": "Male",
+            "Material": "Cotton",
+            "Quantity": 100,
+            "Season": "Summer",
+            "Category": "clothes"
+        }, {
+            "Type": "Dress",
+            "Age": "Child",
+            "Gender": "Female",
+            "Material": "Polyester",
+            "Quantity": 50,
+            "Season": "Spring",
+            "Category": "clothes"
+        }, {
+            "Type": "Jeans",
+            "Age": "Teen",
+            "Gender": "Unisex",
+            "Material": "Denim",
+            "Quantity": 80,
+            "Season": "Fall",
+            "Category": "clothes"
+        }];
+
+
+        let schoolSupplies = [{
+            "id": 1,
+            "Type": "Stationary",
+            "item": "Pens",
+            "Quantity": 200,
+            "Category": "schoolSupplies"
+        }, {
+            "id": 2,
+            "Type": "Stationary",
+            "item": "Notebooks",
+            "Quantity": 150,
+            "Category": "schoolSupplies"
+        }, {
+            "id": 3,
+            "Type": "Books",
+            "item": "Mathematics",
+            "Author": "John Doe",
+            "Language": "English",
+            "Edition": "1st Edition",
+            "Summary": "A comprehensive guide to math covering alot of topics.",
+            "Quantity": 100,
+            "Category": "schoolSupplies",
+            "photoUrl": "UnityAssets/books/Math.webp"
+        }, {
+            "id": 4,
+            "Type": "Books",
+            "item": "Science",
+            "Author": "Jane Smith",
+            "Language": "English",
+            "Edition": "2nd Edition",
+            "Summary": "An exploration of scientific principles and phenomena.",
+            "Quantity": 120,
+            "Category": "schoolSupplies",
+            "photoUrl": "UnityAssets/books/Science.jpg"
+        }, {
+            "id": 6,
+            "Type": "Books",
+            "item": "History",
+            "Author": "Michael Johnson",
+            "Language": "English",
+            "Edition": "3rd Edition",
+            "Summary": "A detailed account of historical events and civilizations.",
+            "Quantity": 80,
+            "Category": "schoolSupplies",
+            "photoUrl": "UnityAssets/books/History.jpg"
+        }, {
+            "id": 5,
+            "Type": "Stationary",
+            "item": "Pencils",
+            "Quantity": 250,
+            "Category": "schoolSupplies"
+        }];
+
+        let Books = [{
+            "id": 3,
+            "Name": "Mathematics",
+            "Author": "John Doe",
+            "Language": "English",
+            "Edition": "1st Edition",
+            "Summary": "A comprehensive guide to math covering alot of topics.",
+            "Quantity": 100,
+            "photoUrl": "UnityAssets/books/Math.jpeg"
+        }, {
+            "id": 4,
+            "Name": "Science",
+            "Author": "Jane Smith",
+            "Language": "English",
+            "Edition": "2nd Edition",
+            "Summary": "An exploration of scientific principles and phenomena.",
+            "Quantity": 120,
+            "photoUrl": "UnityAssets/books/Science.jpeg"
+        }, {
+            "id": 6,
+            "Name": "History",
+            "Author": "Michael Johnson",
+            "Language": "English",
+            "Edition": "3rd Edition",
+            "Summary": "A detailed account of historical events and civilizations.",
+            "Quantity": 80,
+            "photoUrl": "UnityAssets/books/History.jpeg"
+        }];
+
+        let stationeryItems = [{
+            "id": 1,
+            "Type": "Pencils",
+            "Amount": 500
+        }, {
+            "id": 2,
+            "Type": "Notebooks",
+            "Amount": 300
+        }, {
+            "id": 5,
+            "Type": "Erasers",
+            "Amount": 200
+        }];
+
+        let toys = [{
+            "Type": "Action Figure",
+            "Age": "5-7",
+            "Gender": "Male",
+            "Category": "toys",
+            "Quantity": 100,
+            "photoUrl": "UnityAssets/toys/Action figure.jpg"
+        }, {
+            "Type": "Doll",
+            "Age": "3-5",
+            "Gender": "Female",
+            "Category": "toys",
+            "Quantity": 150,
+            "photoUrl": "UnityAssets/toys/doll.jpg"
+        }, {
+            "Type": "Cars",
+            "Age": "6-10",
+            "Gender": "Unisex",
+            "Category": "toys",
+            "Quantity": 200,
+            "photoUrl": "UnityAssets/toys/car.jpg"
+        }, {
+            "Type": "Board Game",
+            "Age": "8-12",
+            "Gender": "Unisex",
+            "Category": "toys",
+            "Quantity": 80,
+            "photoUrl": "UnityAssets/toys/Chess.jpg"
+        }];
+
+        let food = [{
+            "Name": "Apple",
+            "Quantity": "2 kg",
+            "Type": "fruit/veg",
+            "Category": "food"
+        }, {
+            "Name": "Bread",
+            "Quantity": 3,
+            "Type": "baked",
+            "Category": "food"
+        }, {
+            "Name": "Chicken",
+            "Quantity": 5,
+            "Type": "fresh meal",
+            "Category": "food"
+        }, {
+            "Name": "Canned Soup",
+            "Quantity": 10,
+            "Type": "canned",
+            "Category": "food"
+        }, {
+            "Name": "Broccoli",
+            "Quantity": "3 kg",
+            "Type": "fruit/veg",
+            "Category": "food"
+        }];
+
+        let medicalSupplies = [{
+            id: 1,
+            "Name": "heart rate monitor",
+            "Type": "Devices",
+            "Use": "heart rate monitor",
+            "Quantity": 10,
+            "Category": "medicalSupplies",
+            "photoUrl": "UnityAssets/medic/heart monitor.jpg"
+        }, {
+            id: 2,
+            "Name": "Insulin pen",
+            "Type": "Equipment",
+            "Use": "Insulin pen",
+            "Quantity": 50,
+            "Category": "medicalSupplies",
+            "photoUrl": "UnityAssets/medic/insulin-pen.jpeg"
+        }, {
+            id: 3,
+            "Name": "Pandol",
+            "Type": "Medication",
+            "Use": "Pain relief",
+            "Quantity": 30,
+            "Category": "medicalSupplies",
+            "photoUrl": "UnityAssets/medic/pandol.jpg"
+        }, {
+            id: 4,
+            "Name": "Amoxicillin",
+            "Type": "Medication",
+            "Use": "Antibiotic",
+            "Quantity": 20,
+            "Category": "medicalSupplies",
+            "photoUrl": "UnityAssets/medic/Amoxicillin.jpg"
+        }];
+
+        let bloodDonations = [{
+            "Patient-Name": "Ahmed tharwat",
+            "Blood-Type": "O+",
+            "Hospital": "Magdy Yacoub Heart Hospital",
+            "Area": "Isis Temple",
+            "Governorate": "Aswan",
+            "Address": "123 Main Street",
+            "Category": "bloodDonations"
+        }, {
+            "Patient-Name": "Sarah Mohamed",
+            "Blood-Type": "A-",
+            "Hospital": "Bahya Hospital",
+            "Area": "El Haram",
+            "Governorate": "Giza",
+            "Address": "456 Oak Avenue",
+            "Category": "bloodDonations"
+        }, {
+            "Patient-Name": "Peter Adel",
+            "Blood-Type": "B+",
+            "Hospital": "El Salam Hospital",
+            "Area": "El Marg",
+            "Governorate": "Cairo",
+            "Address": "789 Elm Street",
+            "Category": "bloodDonations"
+        }];
+
+
+        let arrays = [
+            clothes,
+            schoolSupplies,
+            Books,
+            stationeryItems,
+            toys,
+            food,
+            medicalSupplies,
+            bloodDonations
+        ];
+
+        function generateCards(array) {
+            let cardHtml = '';
+            const newArray = array.map(item => ({...item
+            }));
+
+            newArray.forEach(item => {
+                let photoHtml = '';
+                let maxQuantity = item.quantity; // Set the maximum quantity to the quantity of the item
+
+                if (item.photoUrl) {
+                    photoHtml = `<img src="${item.photoUrl}" width="280px" height="100%" class="float-end ms-3" alt="${item.type}">`;
+                }
+
+                if (item.photoUrl && item.type) {
+                    photoHtml = `<img src="${item.photoUrl}" width="50px" height="100%" class="float-end ms-3" alt="${item.type}">`;
+                }
+
+                if (item.Category === "bloodDonations") {
+                    let mapHtml = '';
+                    const hospitalName = item.Hospital;
+
+                    switch (hospitalName) {
+                        case 'Magdy Yacoub Heart Hospital':
+                            mapHtml = '<iframe style="width: 362px; height:360px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3457.124656484501!2d31.07271387500662!3d29.947092823177694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145851f1b4190043%3A0x6e2a5a7c49bd1748!2sMagdi%20Yacoub%20Global%20Heart%20Centre!5e0!3m2!1sen!2seg!4v1715542287216!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                            break;
+
+                        case 'Bahya Hospital':
+                            mapHtml = '<iframe style="width: 362px; height:360px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.1237579425515!2d31.184206075008888!3d30.004602620458353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458459c00000001%3A0xff3d2510247e489!2sBaheya%20Foundation%20For%20Early%20Detection%20%26%20Treatment%20Of%20Breast%20Cancer!5e0!3m2!1sen!2seg!4v1715542365658!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                            break;
+
+                        case 'El Salam Hospital':
+                            mapHtml = '<iframe style="width: 362px; height:360px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3449.4703455708154!2d31.41503587501523!3d30.166555512775766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145810c6afa74605%3A0xfdaf8765f0166659!2sEl-Salam%20Hospital%2C%20El-Salam%20Sharkeya%2C%20Al%20Salam%20First%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1715542431721!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                            break;
+
+                        default:
+                            mapHtml = '';
+                            break;
+                    }
+
+                    const cardTextHtml = Object.entries(item)
+                        .filter(([key]) => key !== 'photoUrl' && key !== 'Category')
+                        .map(([key, value]) => `<p class="card-text"><strong>${key}:</strong> ${value}</p>`)
+                        .join('');
+
+                    cardHtml += `
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body card-container">
+                                ${cardTextHtml}
+                                <div class="input-group">
+                                    <input id="quantity-input-${item.id}" type="number" max="${item.Quantity}" class="form-control quantity-input"  min="1" max="${maxQuantity}" placeholder="How many items would you like to donate?" style="width: 25em;" value="1">
+                                    <a class="btn btn-primary donate-btn" style="border-radius: 10px; margin-top: 8px; color: rgb(213, 161, 135);" href="scheduleDonation.html">Donate</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="position: absolute; z-index: 1; margin-left: 730px;">
+                           ${mapHtml}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+                } else {
+                    const cardTextHtml = Object.entries(item)
+                        .filter(([key]) => key !== 'photoUrl' && key !== 'Category')
+                        .map(([key, value]) => `<p class="card-text"><strong>${key}:</strong> ${value}</p>`)
+                        .join('');
+
+                    cardHtml += `
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body card-container">
+                                ${cardTextHtml}
+                                <div class="input-group">
+                                    <input id="quantity-input-${item.id}" type="number" max="${item.Quantity}" class="form-control quantity-input"  min="1" max="${maxQuantity}" placeholder="How many items would you like to donate?" style="width: 25em;" value="1">
+                                    <a class="btn btn-primary donate-btn" style="border-radius: 10px; margin-top: 8px; color: rgb(213, 161, 135);" href="scheduleDonation.html">Donate</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="position: absolute; z-index: 1; margin-left: 730px;">
+                            ${photoHtml}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+                }
+
+
+
+            });
+            return cardHtml;
+        }
+
+
+        function filterCards(category) {
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = '';
+            arrays.forEach(array => {
+                if (array[0].Category === category) {
+                    cardContainer.innerHTML += generateCards(array);
+                }
+            });
+        }
+
+
+
+        // Container for cards
+        const cardContainer = document.getElementById('cardContainer');
+
+        // Generate cards for each array
+        arrays.forEach(array => {
+            cardContainer.innerHTML += generateCards(array);
+        });
+
+        // Radio button change event listener
+        const radioButtons = document.querySelectorAll('input[name="category"]');
+        radioButtons.forEach(button => {
+            button.addEventListener('change', (event) => {
+                const category = event.target.value;
+                if (category === 'all') {
+                    showAllCards();
+                } else {
+                    filterCards(category);
+                }
+            });
+        });
+
+        // Function to show all cards
+        function showAllCards() {
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = '';
+            arrays.forEach(array => {
+                cardContainer.innerHTML += generateCards(array);
+            });
+        }
+    </script>
+    <script>
+        const categoryRadios = document.querySelectorAll('input[name="category"]');
+        const clothesFilterContainer = document.getElementById('clothesFilterContainer');
+        const schoolSuppliesFilterContainer = document.getElementById('schoolSuppliesFilterContainer');
+        const toysFilterContainer = document.getElementById('toysFilterContainer');
+        const foodFilterContainer = document.getElementById('foodFilterContainer');
+        const medicalSuppliesFilterContainer = document.getElementById('medicalSuppliesFilterContainer');
+        const medicationFilterContainer = document.getElementById('medicationFilterContainer');
+        const bloodDonationFilterContainer = document.getElementById('bloodDonationFilterContainer');
+
+        categoryRadios.forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                const selectedCategory = event.target.value;
+                clothesFilterContainer.style.display = 'none';
+                schoolSuppliesFilterContainer.style.display = 'none';
+                toysFilterContainer.style.display = 'none';
+                foodFilterContainer.style.display = 'none';
+                medicalSuppliesFilterContainer.style.display = 'none';
+                medicationFilterContainer.style.display = 'none';
+                bloodDonationFilterContainer.style.display = 'none';
+
+                if (selectedCategory === 'clothes') {
+                    clothesFilterContainer.style.display = 'block';
+                } else if (selectedCategory === 'schoolSupplies') {
+                    schoolSuppliesFilterContainer.style.display = 'block';
+                } else if (selectedCategory === 'toys') {
+                    toysFilterContainer.style.display = 'block';
+                } else if (selectedCategory === 'food') {
+                    foodFilterContainer.style.display = 'block';
+                } else if (selectedCategory === 'medicalSupplies') {
+                    medicalSuppliesFilterContainer.style.display = 'block';
+                    medicationFilterContainer.style.display = 'inline-block';
+                } else if (selectedCategory === 'bloodDonations') {
+                    bloodDonationFilterContainer.style.display = 'block';
+                }
+            });
+        });
+
+        // Function to filter food by types
+        function filterFoodByType(type) {
+            let filteredFood;
+            if (type === 'all') {
+                filteredFood = food;
+            } else {
+                filteredFood = food.filter(item => item.Type === type);
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredFood);
+        }
+
+        // Event listener for food type select element
+        const foodTypeSelect = document.getElementById('foodType');
+        foodTypeSelect.addEventListener('change', (event) => {
+            const selectedType = event.target.value;
+            filterFoodByType(selectedType);
+        });
+        // Function to filter school supplies by type
+        function filterSchoolSupplies(type) {
+            let filteredSupplies;
+            if (type === 'all') {
+                filteredSupplies = schoolSupplies; // Show all school supplies when 'All' is selected
+            } else {
+                filteredSupplies = schoolSupplies.filter(item => item.Type === type);
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredSupplies);
+        }
+
+        // Event listener for school supplies type select element
+        const schoolSuppliesTypeSelect = document.getElementById('schoolSuppliesType');
+        schoolSuppliesTypeSelect.addEventListener('change', (event) => {
+            const selectedType = event.target.value;
+            filterSchoolSupplies(selectedType);
+        });
+
+
+        // Function to filter clothes by age, gender, and season
+        function filterClothes(age, gender, season) {
+            let filteredClothes;
+            if (age === 'all' && gender === 'all' && season === 'all') {
+                filteredClothes = clothes; // Show all clothes when all options are selected
+            } else {
+                filteredClothes = clothes.filter(item => {
+                    return (age === 'all' || item.Age === age) &&
+                        (gender === 'all' || item.Gender === gender) &&
+                        (season === 'all' || item.Season === season);
+                });
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredClothes);
+        }
+
+        // Event listeners for select elements for age, gender, and season
+        const clothesAgeSelect = document.getElementById('clothesAge');
+        const clothesGenderSelect = document.getElementById('clothesGender');
+        const clothesSeasonSelect = document.getElementById('clothesSeason');
+
+        clothesAgeSelect.addEventListener('change', () => {
+            const selectedAge = clothesAgeSelect.value;
+            const selectedGender = clothesGenderSelect.value;
+            const selectedSeason = clothesSeasonSelect.value;
+            filterClothes(selectedAge, selectedGender, selectedSeason);
+        });
+
+        clothesGenderSelect.addEventListener('change', () => {
+            const selectedAge = clothesAgeSelect.value;
+            const selectedGender = clothesGenderSelect.value;
+            const selectedSeason = clothesSeasonSelect.value;
+            filterClothes(selectedAge, selectedGender, selectedSeason);
+        });
+
+        clothesSeasonSelect.addEventListener('change', () => {
+            const selectedAge = clothesAgeSelect.value;
+            const selectedGender = clothesGenderSelect.value;
+            const selectedSeason = clothesSeasonSelect.value;
+            filterClothes(selectedAge, selectedGender, selectedSeason);
+        });
+        // Function to filter toys by age, gender, and category
+        function filterToys(age, gender, category) {
+            let filteredToys;
+            if (age === 'all' && gender === 'all' && category === 'all') {
+                filteredToys = toys; // Show all toys when 'All' is selected for all filters
+            } else {
+                filteredToys = toys.filter(item => {
+                    return (age === 'all' || item.Age === age) &&
+                        (gender === 'all' || item.Gender === gender) &&
+                        (category === 'all' || item.Type === category);
+                });
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredToys);
+        }
+
+        // Event listeners for select elements for age, gender, and category
+        const toysAgeSelect = document.getElementById('toysAge');
+        const toysGenderSelect = document.getElementById('toysGender');
+        const toysCategorySelect = document.getElementById('toysCategory');
+
+        toysAgeSelect.addEventListener('change', () => {
+            const selectedAge = toysAgeSelect.value;
+            const selectedGender = toysGenderSelect.value;
+            const selectedCategory = toysCategorySelect.value;
+            filterToys(selectedAge, selectedGender, selectedCategory);
+        });
+
+        toysGenderSelect.addEventListener('change', () => {
+            const selectedAge = toysAgeSelect.value;
+            const selectedGender = toysGenderSelect.value;
+            const selectedCategory = toysCategorySelect.value;
+            filterToys(selectedAge, selectedGender, selectedCategory);
+        });
+
+        toysCategorySelect.addEventListener('change', () => {
+            const selectedAge = toysAgeSelect.value;
+            const selectedGender = toysGenderSelect.value;
+            const selectedCategory = toysCategorySelect.value;
+            filterToys(selectedAge, selectedGender, selectedCategory);
+        });
+
+        function filterBloodDonationsByFilters(hospital, government, area) {
+            let filteredBloodDonations;
+            if (hospital === 'all' && government === 'all' && area === 'all') {
+                filteredBloodDonations = bloodDonations; // Show all blood donations when 'All' is selected for all filters
+            } else {
+                filteredBloodDonations = bloodDonations.filter(item => {
+                    return (hospital === 'all' || item.Hospital === hospital) &&
+                        (government === 'all' || item.Governorate === government) &&
+                        (area === 'all' || item.Area === area);
+                });
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredBloodDonations);
+        }
+
+
+
+        // Event listener for blood donation filters
+        const hospitalSelect = document.getElementById('bloodDonationHospital');
+        const governmentSelect = document.getElementById('bloodDonationGovernorate');
+        const areaSelect = document.getElementById('bloodDonationArea');
+
+        hospitalSelect.addEventListener('change', () => {
+            const selectedHospital = hospitalSelect.value;
+            const selectedGovernment = governmentSelect.value;
+            const selectedArea = areaSelect.value;
+            filterBloodDonationsByFilters(selectedHospital, selectedGovernment, selectedArea);
+        });
+
+        governmentSelect.addEventListener('change', () => {
+            const selectedHospital = hospitalSelect.value;
+            const selectedGovernment = governmentSelect.value;
+            const selectedArea = areaSelect.value;
+            filterBloodDonationsByFilters(selectedHospital, selectedGovernment, selectedArea);
+        });
+
+        areaSelect.addEventListener('change', () => {
+            const selectedHospital = hospitalSelect.value;
+            const selectedGovernment = governmentSelect.value;
+            const selectedArea = areaSelect.value;
+            filterBloodDonationsByFilters(selectedHospital, selectedGovernment, selectedArea);
+        });
+        // Function to filter medical supplies by type and use
+        function filterMedicalSupplies(type, use) {
+            let filteredMedicalSupplies;
+            if (type === 'all' && use === 'all') {
+                filteredMedicalSupplies = medicalSupplies; // Show all medical supplies when 'All' is selected for both filters
+            } else {
+                filteredMedicalSupplies = medicalSupplies.filter(item => {
+                    return (type === 'all' || item.Type === type) &&
+                        (use === 'all' || item.Use === use);
+                });
+            }
+            const cardContainer = document.getElementById('cardContainer');
+            cardContainer.innerHTML = generateCards(filteredMedicalSupplies);
+        }
+
+        // Event listeners for select elements for type and use
+        const medicalTypeSelect = document.getElementById('medicalSuppliesDeviceType');
+        const medicalUseSelect = document.getElementById('medicationUse');
+
+        medicalTypeSelect.addEventListener('change', () => {
+            const selectedType = medicalTypeSelect.value;
+            const selectedUse = medicalUseSelect.value;
+            filterMedicalSupplies(selectedType, selectedUse);
+        });
+
+        medicalUseSelect.addEventListener('change', () => {
+            const selectedType = medicalTypeSelect.value;
+            const selectedUse = medicalUseSelect.value;
+            filterMedicalSupplies(selectedType, selectedUse);
+        });
+
+        // Get the search button element
+        const searchButton = document.getElementById('searchButton');
+
+        // Add event listener to the search button
+        searchButton.addEventListener('click', () => {
+            // Get the input from the search bar
+            const searchTerm = document.getElementById('searchBar').value;
+
+
+            // Call the filterCards function with the search term
+            filterCards(searchTerm);
+        });
+
+        // document.addEventListener('keydown', (event) => {
+        //     // Check if the key pressed is the "Enter" key (key code 13)
+        //     if (event.keyCode === 13 && searchButton.value.trim() !== '') {
+        //         // Get the input from the search bar
+        //         const searchTerm = document.getElementById('searchBar').value;
+
+        //         // Call the filterCards function with the search term
+        //         filterCards(searchTerm);
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/logo-no-background.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+    <meta name="Author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Apply Teaching Volunteer</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+    <style>
+        /* inter-300 - latin */
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .filter-container>div {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .options-container {
+            float: right;
+        }
+    </style>
+
+    <style>
+        /* Add custom CSS to hide dropdown by default */
+        
+        .dropdown-item {
+            margin: 3px 0 5px -25px;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            /* Adjust as needed */
+        }
+        /* Show dropdown when hovering over the dropdown item */
+        
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .accordion-button {
+            font-size: 1rem;
+            /* Set font size to regular */
+            background-color: transparent;
+            /* Remove background color */
+            /* Remove border */
+            width: 80vw;
+            /* Set width */
+            text-align: left;
+            /* Align text to the left */
+        }
+        
+        .accordion-item {
+            border: black;
+        }
+        /* Add your provided styles here */
+        /* Add your provided styles here */
+        
+        #teachingAccordion {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #teachingAccordion li {
+            position: relative;
+            padding-bottom: 4px;
+            padding-top: 18px;
+            border-top: 1px solid #dce7eb;
+        }
+        
+        #teachingAccordion li input[type="checkbox"] {
+            position: absolute;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+        }
+        
+        #teachingAccordion li i {
+            position: absolute;
+            transform: translate(-6px, 0);
+            margin-top: 16px;
+            right: 0;
+        }
+        
+        #teachingAccordion li input[type=checkbox]:checked~p {
+            margin-top: 0;
+            max-height: 0;
+            opacity: 0;
+            transform: translateX(-50%);
+        }
+        
+        #teachingAccordion li input[type="checkbox"]:checked~i::before {
+            transform: translate(2px, 0) rotate(45deg);
+        }
+        
+        #teachingAccordion li input[type="checkbox"]:checked~i::after {
+            transform: translate(-2px, 0) rotate(-45deg);
+        }
+        
+        #teachingAccordion li i::before,
+        #teachingAccordion li i::after {
+            content: "";
+            position: absolute;
+            background: #333;
+            width: 3px;
+            height: 9px;
+        }
+        
+        #teachingAccordion li i::before {
+            transform: translate(-2px, 0) rotate(45deg);
+        }
+        
+        #teachingAccordion li i:after {
+            transform: translate(2px, 0) rotate(-45deg);
+        }
+        
+        #teachingAccordion p {
+            font-size: 16px;
+            color: rgba(48, 69, 92, 0.8);
+            line-height: 26px;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0 11px;
+            max-height: 800px;
+            margin-top: 14px;
+            opacity: 1;
+            transform: translate(0, 0);
+            overflow: hidden;
+        }
+        
+        #teachingAccordion .transition,
+        #teachingAccordion p,
+        #teachingAccordion li i:before,
+        #teachingAccordion li i:after {
+            transition: all 0.25s ease-in-out;
+        }
+        
+        #teachingAccordion .flipIn,
+        #teachingAccordion h1,
+        #teachingAccordion li {
+            animation: flipdown 0.5s ease both;
+        }
+        
+        #teachingAccordion li:nth-of-type(1) {
+            animation-delay: 0.5s;
+        }
+        
+        #teachingAccordion li:nth-of-type(2) {
+            animation-delay: 0.75s;
+        }
+        
+        #teachingAccordion li:nth-of-type(3) {
+            animation-delay: 1s;
+        }
+        
+        #teachingAccordion li:last-of-type {
+            padding-bottom: 0;
+        }
+        
+        @keyframes flipdown {
+            0% {
+                opacity: 0;
+                transform-origin: top center;
+                transform: rotateX(-90deg);
+            }
+            5% {
+                opacity: 1;
+            }
+            80% {
+                transform: rotateX(8deg);
+            }
+            83% {
+                transform: rotateX(6deg);
+            }
+            92% {
+                transform: rotateX(-3deg);
+            }
+            100% {
+                transform-origin: top center;
+                transform: rotateX(0deg);
+            }
+        }
+        
+        .accordion-content {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        .map {
+            flex: 1;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .accordion-content {
+                flex-direction: column;
+            }
+            .content-left,
+            .content-right {
+                flex: auto;
+                margin-right: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navScroll">
+
+    <nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
+        <div class="container">
+            <a class="navbar-brand pe-4 fs-4" href="donorDashboard.html">
+                <img src="UnityAssets/png/logo-no-background.png" style="width:140px;  " alt>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right:10px;" href="ViewDonationItems.html" aria-label="Brings you to the frontpage">
+                            View Donation Requests
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-fancy dropdown-toggle" id="navbarDropdown" role="button" style="margin-right: 10px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Volunteer</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="link link-fancy dropdown-item" href="applyMedical.html">Medical</a></li>
+                            <li><a class="link link-fancy dropdown-item" href="applyTeaching.html">Teaching</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right:10px;" href="volunteering.html">
+                            Apply volunteering
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right: 10px; margin-bottom: 15px;" role="button" href="RegisteredOrganizationsdoner.html">
+                    Organizations
+                </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-fancy" style="margin-right:10px;" href="donorAccountSettings.html">
+                            Account Settings
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="medicalFilterContainer" class="filter-container" style="margin-left: 212px; margin-top: 150px;">
+        <div>
+            <label for="specialty">Subjects:</label>
+            <select id="medSpecialty" class="form-select form-select-lg" style="min-height: 10px; height: 35px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="English">English</option>
+            <option value="History">History</option>
+            <option value="Biology">Biology</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Art">Art</option>
+            <option value="Music">Music</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Programming">Programming</option>
+            
+        </select>
+        </div>
+        <div>
+            <label for="organization">Governerates:</label>
+            <select id="orgName" class="form-select form-select-lg" style="min-height: 10px; height: 35px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="New York">New York</option>
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Houston">Houston</option>
+            <option value="Philadelphia">Philadelphia</option>
+        </select>
+        </div>
+        <div>
+            <label for="area">Area:</label>
+            <select id="Area" class="form-select form-select-lg" style="min-height: 10px; height: 35px;
+            padding: .5rem 1rem;
+            font-size: 12.5px;
+            border-radius: .5rem;">
+            <option value="all">All</option>
+            <option value="Downtown">Downtown</option>
+            <option value="Uptown">Uptown</option>
+            <option value="Subrbia">Subrbia</option>
+            <option value="Rural">Rural</option>
+            <option value="Urban">Urban</option>
+        </select>
+        </div>
+    </div>
+    <main>
+        <ul id="teachingAccordion" style="margin-top: 60px; width: 80vw; margin-left: 150px;">
+        </ul>
+    </main>
+
+    <footer>
+        <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
+
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <img src="UnityAssets/png/logo-black.png" style="width:200px" alt="">
+                    <address class="text-secondary mt-3">
+                <strong>Unity</strong><br>
+                Al Rehab City, New Cairo<br>
+                Cairo, EG 103021<br>
+                <abbr title="Phone">P:</abbr>
+                (+20) 1013455666
+              </address>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
+                    <h3 class="h6 mb-3">Company</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-fancy ps-0" href="#">Donor Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3 p-5">
+                    <h3 class="h6 mb-3">Subpages</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <!-- <a class="nav-link link-fancy ps-0" aria-current="page" href="404.html">404 System Page</a> -->
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="Registration.html">Register System Page</a>
+                            <a class="nav-link link-fancy ps-0" aria-current="page" href="index.html">Home Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy" target="_blank">Unity</a>
+        </div>
+    </footer>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+        });
+    </script>
+
+    <script>
+        let scrollpos = window.scrollY
+        const header = document.querySelector(".navbar")
+        const header_height = header.offsetHeight
+
+        const add_class_on_scroll = () => header.classList.add("scrolled", "shadow-sm")
+        const remove_class_on_scroll = () => header.classList.remove("scrolled", "shadow-sm")
+
+        window.addEventListener('scroll', function() {
+            scrollpos = window.scrollY;
+
+            if (scrollpos >= header_height) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+
+            console.log(scrollpos)
+        })
+    </script>
+
+    <script>
+        let teachingPositions = [{
+            "numOfStudents": 25,
+            "subjects": ["Mathematics", "Physics"],
+            "area": "Downtown",
+            "governorate": "New York",
+            "address": "123 Main St"
+        }, {
+            "numOfStudents": 30,
+            "subjects": ["English", "History"],
+            "area": "Uptown",
+            "governorate": "Los Angeles",
+            "address": "456 Elm St"
+        }, {
+            "numOfStudents": 20,
+            "subjects": ["Biology", "Chemistry"],
+            "area": "Suburbia",
+            "governorate": "Chicago",
+            "address": "789 Oak St"
+        }, {
+            "numOfStudents": 15,
+            "subjects": ["Art", "Music"],
+            "area": "Rural",
+            "governorate": "Houston",
+            "address": "101 Pine St"
+        }, {
+            "numOfStudents": 35,
+            "subjects": ["Computer Science", "Programming"],
+            "area": "Urban",
+            "governorate": "Philadelphia",
+            "address": "222 Maple St"
+        }];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const teachingAccordion = document.getElementById('teachingAccordion');
+
+            teachingPositions.forEach((teachingPosition, index) => {
+                const accordionItem = document.createElement('li');
+                accordionItem.innerHTML = `
+            <input type="checkbox" id="teachingCollapse${index}">
+            <i></i>
+            <h2 style='font-size: 18px; font-weight: 400;'>Teaching Position ${index + 1}</h2>
+            <div class="accordion-content" style="display: none;">
+                <div class='content'>
+                    <p><strong>Number of Students:</strong> ${teachingPosition.numOfStudents}</p>
+                    <p><strong>Subjects:</strong> ${teachingPosition.subjects.join(', ')}</p>
+                    <p><strong>Address:</strong> ${teachingPosition.address}</p>
+                    <p><strong>Area:</strong> ${teachingPosition.area}</p>
+                    <p><strong>Governorate:</strong> ${teachingPosition.governorate}</p>
+                    <p>If you are interested, apply for volunteering.</p>
+
+                </div>
+                <div class='map'>
+                <iframe style="height: 300px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.177366607132!2d31.481983075061947!3d30.060450017813046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458187b4604288b%3A0x9c6858efa20c0bf6!2s26%20El-Nasir%20Salah%20El-Deen%2C%20Second%20New%20Cairo%2C%20Cairo%20Governorate%204750150!5e0!3m2!1sen!2seg!4v1715005022496!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            </div>
+        `;
+                teachingAccordion.appendChild(accordionItem);
+
+                const checkbox = accordionItem.querySelector(`#teachingCollapse${index}`);
+                checkbox.addEventListener('change', function() {
+                    const content = accordionItem.querySelector('.accordion-content');
+                    if (this.checked) {
+                        content.style.display = 'flex';
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
+            });
+
+            const medSpecialtySelect = document.getElementById('medSpecialty');
+            const orgNameSelect = document.getElementById('orgName');
+            const areaSelect = document.getElementById('Area');
+
+            function filterAccordionItems() {
+                const selectedSubject = medSpecialtySelect.value;
+                const selectedGovernorate = orgNameSelect.value;
+                const selectedArea = areaSelect.value;
+
+                const accordionItems = teachingAccordion.querySelectorAll('li');
+
+                accordionItems.forEach(item => {
+                    const subjects = item.querySelector('p:nth-child(2)').innerText.split(': ')[1].split(', ');
+                    const governorate = item.querySelector('p:nth-child(5)').innerText.split(': ')[1];
+                    const area = item.querySelector('p:nth-child(4)').innerText.split(': ')[1];
+
+                    const matchesSubject = selectedSubject === 'all' || subjects.includes(selectedSubject);
+                    const matchesGovernorate = selectedGovernorate === 'all' || governorate === selectedGovernorate;
+                    const matchesArea = selectedArea === 'all' || area === selectedArea;
+
+                    if (matchesSubject && matchesGovernorate && matchesArea) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            medSpecialtySelect.addEventListener('change', filterAccordionItems);
+            orgNameSelect.addEventListener('change', filterAccordionItems);
+            areaSelect.addEventListener('change', filterAccordionItems);
+
+            // Initial filter
+            filterAccordionItems();
+        });
+    </script>
+
+</body>
+
+</html>

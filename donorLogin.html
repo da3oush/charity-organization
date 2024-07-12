@@ -1,0 +1,297 @@
+<!doctype html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="UnityAssets/png/unity-favicon-color.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="UnityAssets/png/unity-favicon-color.png">
+    <meta name="author" content="Holger Koenemann">
+    <meta name="generator" content="Eleventy v2.0.0">
+    <meta name="HandheldFriendly" content="true">
+    <title>Donor Login</title>
+    <link rel="stylesheet" href="css/theme.min.css">
+
+    <style>
+        /* inter-300 - latin */
+        
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-300.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-500.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local(''), url('./fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url('./fonts/inter-v12-latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+        
+        .error {
+            border: 1px solid red;
+            box-shadow: 0px 0px 10px 1px red;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+<body class="d-flex h-100 w-100" data-bs-spy="scroll" data-bs-target="#navScroll">
+
+    <div class="h-100 container-fluid">
+        <div class="h-100 row d-flex align-items-stretch">
+
+            <div class="col-12 col-md-7 col-lg-6 d-flex align-items-start flex-column px-vw-5">
+
+                <header class="mb-auto py-vh-2 col-12">
+                    <a class="navbar-brand pe-4 fs-4" href="/">
+                        <img src="UnityAssets/png/logo-no-background.png" style="width:150px;" alt>
+                    </a>
+
+                </header>
+                <main class="mb-auto col-12">
+                    <h1>Login</h1>
+
+                    <form class="row" id="loginForm">
+                        <div class="col-12 col-lg-10 col-xl-8">
+                            <div class="mb-3">
+                                <label for="userType" id="Loginlabel" class="form-label">Login as</label>
+                                <select class="form-select form-select-lg form-control-lg form-control-color" id="userType" aria-label="Default select example" style="display: block;">
+                                    <option selected disabled>Choose...</option>
+                                    <option value="donor">Donor</option>
+                                    <option value="organization">Organization</option>
+                                </select>
+                            </div>
+
+                            <div id="donorFields" style="display:none;">
+                                <input type="email" id="donorEmail" class="form-control form-control-lg" style="margin-bottom: 10px;" placeholder="Email">
+                                <div class="error-message" id="donorEmailError" style="display: none;">Please enter a valid email address.</div>
+                                <input type="password" id="donorPassword" class="form-control form-control-lg" style="margin-bottom: 10px;" placeholder="Password">
+                                <div class="error-message" id="donorPasswordError" style="display: none;">Please enter a password.</div>
+                            </div>
+
+                            <div id="organizationRepFields" style="display:none;">
+                                <input type="text" id="organizationEmail" class="form-control form-control-lg" style="margin-bottom: 10px;" placeholder="Organization Name">
+                                <div class="error-message" id="organizationEmailError" style="display: none;">Please enter a valid organization name.</div>
+                                <input type="password" id="organizationPassword" class="form-control form-control-lg" style="margin-bottom: 10px;" placeholder="Password">
+                                <div class="error-message" id="organizationPasswordError" style="display: none;">Please enter a password.</div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="buttondoner" style="display:none; background-color: #162836; color: #D5A187; width: 130px; margin-left: 20%;margin-top: 10px;">Login </button>
+
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="buttonorganization" style="display:none; background-color: #162836; color: #D5A187; width: 130px; margin-left: 20%;margin-top: 10px;">Login </button>
+                    </form>
+                    <div id="pending" style="display: none;"> Your registration request is now pending confirmation.</div>
+                    <a href="index.html" class="link-fancy" style="margin-top: 20px; ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg> Go Back To Frontpage</a>
+                </main>
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-6 bg-cover" style="background-image: url(UnityAssets/126501.jpg);"></div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        const users = [{
+            'email': 'doctor@gmail.com',
+            'password': '12345',
+            'category': 'Doctor'
+        }, {
+            'email': 'teacher@gmail.com',
+            'password': '12345',
+            'category': 'Teacher'
+        }, {
+            'email': 'all@gmail.com',
+            'password': '12345',
+            'category': 'Donor'
+        }, {
+            'email': 'donor@gmail.com',
+            'password': '12345',
+            'category': 'DonorOnly'
+        }];
+
+        const organizations = [{
+            'email': 'Resala',
+            'password': '12345',
+            'category': 'Resala'
+        }, {
+            'email': 'Baheya',
+            'password': '12345',
+            'category': 'Baheya'
+        }];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const userTypeSelect = document.getElementById('userType');
+            const donorFields = document.getElementById('donorFields');
+            const organizationRepFields = document.getElementById('organizationRepFields');
+            const loginLabel = document.getElementById('Loginlabel');
+            const Buttondoner = document.getElementById('buttondoner');
+            const Buttonorganization = document.getElementById('buttonorganization');
+
+            userTypeSelect.addEventListener('change', function() {
+                const selectedUserType = userTypeSelect.value;
+
+                if (selectedUserType === 'donor') {
+                    donorFields.style.display = 'block';
+                    organizationRepFields.style.display = 'none';
+                    userTypeSelect.style.display = 'none';
+                    loginLabel.style.display = 'none';
+                    Buttondoner.style.display = 'block';
+                    Buttonorganization.style.display = 'none';
+                } else if (selectedUserType === 'organization') {
+                    donorFields.style.display = 'none';
+                    organizationRepFields.style.display = 'block';
+                    userTypeSelect.style.display = 'none';
+                    loginLabel.style.display = 'none';
+                    Buttondoner.style.display = 'none';
+                    Buttonorganization.style.display = 'block';
+                } else {
+                    donorFields.style.display = 'none';
+                    organizationRepFields.style.display = 'none';
+                }
+            });
+
+            Buttondoner.addEventListener('click', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('donorEmail').value;
+                const password = document.getElementById('donorPassword').value;
+                checkUserDonor(email, password);
+            });
+
+            Buttonorganization.addEventListener('click', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('organizationEmail').value;
+                const password = document.getElementById('organizationPassword').value;
+                checkUserOrganization(email, password);
+            });
+
+            function checkUserDonor(email, password) {
+                // Reset error messages
+                document.getElementById('donorEmailError').style.display = 'none';
+                document.getElementById('donorPasswordError').style.display = 'none';
+
+                // Reset red borders
+                document.getElementById('donorEmail').classList.remove('error');
+                document.getElementById('donorPassword').classList.remove('error');
+
+                if (!email) {
+                    document.getElementById('donorEmailError').style.display = 'block';
+                    document.getElementById('donorEmail').classList.add('error');
+                    return;
+                }
+
+                if (!password) {
+                    document.getElementById('donorPasswordError').style.display = 'block';
+                    document.getElementById('donorPassword').classList.add('error');
+                    return;
+                }
+
+                // Check if user exists in the users array
+                const user = users.find(user => user.email === email && user.password === password);
+
+                if (user) {
+                    // User exists, update href based on category
+                    switch (user.category) {
+                        case 'Doctor':
+                            console.log('Doctor');
+                            window.location.href = 'medicalDashboard.html';
+                            break;
+                        case 'Teacher':
+                            console.log('Teacher');
+                            window.location.href = 'teacherDashboard.html';
+                            break;
+                        case 'Donor':
+                            console.log('Donor');
+                            window.location.href = 'donorDashboard.html';
+                            break;
+                        case 'DonorOnly':
+                            window.location.href = 'donorDashboard.html';
+                            break;
+                        default:
+                            console.log('Invalid category');
+                    }
+                } else {
+                    console.log('User not found');
+                }
+            }
+
+            function checkUserOrganization(email, password) {
+                // Reset error messages
+                document.getElementById('organizationEmailError').style.display = 'none';
+                document.getElementById('organizationPasswordError').style.display = 'none';
+
+                // Reset red borders
+                document.getElementById('organizationEmail').classList.remove('error');
+                document.getElementById('organizationPassword').classList.remove('error');
+
+                if (!email) {
+                    document.getElementById('organizationEmailError').style.display = 'block';
+                    document.getElementById('organizationEmail').classList.add('error');
+                    return;
+                }
+
+                if (!password) {
+                    document.getElementById('organizationPasswordError').style.display = 'block';
+                    document.getElementById('organizationPassword').classList.add('error');
+                    return;
+                }
+
+                // Check if organization exists in the organizations array
+                const organization = organizations.find(org => org.email === email && org.password === password);
+
+                if (organization) {
+                    // Organization exists, update href based on category
+                    window.location.href = "organizationDashboard.html";
+                } else {
+                    console.log('Organization not found');
+                }
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>
